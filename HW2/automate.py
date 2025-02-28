@@ -127,7 +127,7 @@ def main():
     run_shell_command_in_shell(shell, f"echo '{TEAM_PASSWORD}' | sudo -S -p '' -i -u hadoop", wait=2.0)
 
     # B) Now SSH into tmpl-nn as 'hadoop':
-    run_shell_command_in_shell(shell, "ssh -o StrictHostKeyChecking=no {NODES['tmpl-nn']}", wait=2.0)
+    run_shell_command_in_shell(shell, f"ssh -o StrictHostKeyChecking=no {NODES['tmpl-nn']}", wait=2.0)
 
     # Create a directory /test
     run_shell_command_in_shell(shell, "hdfs dfs -mkdir /test", wait=2.0)
