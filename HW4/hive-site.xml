@@ -1,0 +1,44 @@
+<configuration>
+    <property>
+        <name>hive.server2.authentication</name>
+        <value>NONE</value>
+    </property>
+    <property>
+        <name>hive.metastorewarehouse.dir</name>
+        <value>/user/hive/warehouse</value>
+    </property>
+    <property>
+        <name>hive.server2.thrift.port</name>
+        <value>5433</value>
+        <description>TCP port number to listen on, default 10000</description>
+    </property>
+    <property>
+        <name>hive.server2.thrift.bind.host</name>
+        <value>0.0.0.0</value> <!-- Разрешить подключения со всех интерфейсов -->
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>jdbc:postgresql://tmpl-nn:5432/metastore</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>org.postgresql.Driver</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>hive</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>hiveMegaPass</value>
+    </property>
+    <property>
+        <name>hive.metastore.uris</name>
+        <value>thrift://tmpl-jn:9083</value>  <!-- Default metastore port -->
+    </property>
+
+    <property>
+        <name>hive.metastore.thrift.bind.host</name>
+        <value>0.0.0.0</value>  <!-- Allow remote connections -->
+    </property>
+</configuration>
