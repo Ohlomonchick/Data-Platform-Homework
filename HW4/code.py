@@ -31,3 +31,22 @@ df.rdd.getNumPartitions()
 hive = Hive(spark=spark, cluster="test")
 
 writer = DBWriter(connection=hive, table="test.spark_partitions", options={"if_exists": "replace_entire_table"})
+
+writer.run(df)
+
+df = df.withColumnRenamed("Siblings/Spouses Aboard", "SibSp") \
+       .withColumnRenamed("Parents/Children Aboard", "Parch") \
+        .withColumnRenamed("Fare\r", "Fare")
+
+# Задание 3: Применение нескольких трансформаций данных
+# Преобразование типов столбцов
+df = df.withColumn("Survived", F.col("Survived").cast("integer")) \
+       .withColumn("Age", F.col("Age").cast("double")) \
+       .withColumn("Fare", F.col("Fare").cast("double"))
+
+# Задание 4: Применение партиционирования при сохранении
+# Задание 5: Сохранение как таблицы Hive с партиционированием
+(df.write
+   .partitionBy("Pclass")  # Партиционирование по классу каюты
+   .mode("overwrite")
+   .saveAsTable("test.spark_partitions"))
